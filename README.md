@@ -1,6 +1,6 @@
-# ReduxSimpleStarter
+# FreshGrits Jam Videos. Gets your jams and news all in one place. 
 
-Interested in learning [Redux](https://www.udemy.com/react-redux/)?
+
 
 ### Getting Started
 
@@ -10,8 +10,8 @@ There are two methods for getting started with this repo.
 Checkout this repo, install dependencies, then start the gulp process with the following:
 
 ```
-> git clone https://github.com/StephenGrider/ReduxSimpleStarter.git
-> cd ReduxSimpleStarter
+> git clone https://github.com/msmele345/FreshGrits
+> cd jamReact
 > npm install
 > npm start
 ```
