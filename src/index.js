@@ -4,8 +4,10 @@ import SearchBar from './components/search_bar';          //libraies need string
 import YTSearch from 'youtube-api-search';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
+import PostList from './components/posts_list';
 import _ from 'lodash';
 const API_KEY = 'AIzaSyAb7mb0BCqk1BmBAmqalD36w4Vht678lBM';
+const REDDIT = 'https://api.reddit.com/r/';
 
 
 //API CALLS or fetches need to occur in the most parent component so props can be passed downstream
@@ -18,6 +20,7 @@ class App extends Component {
 
     this.state = { 
       videos:[],
+      posts: [],
       selectedVideo: null
     };
 
@@ -34,9 +37,18 @@ class App extends Component {
     });
   };
 
+  componentDidMount(){
+    const posts = fetch("https://api.reddit.com/r/disco_biscuits/")
+      posts 
+        .then(data => data.json())
+        .then(response => response.data.children)
+        .then(posts => this.setState( {posts} ));
+  };
+
   render() {
     //use utlitlty lodash function to govern search field api calls (it searchers on any keyboard change)
     const videoSearch = _.debounce((term) => {this.videoSearch(term) }, 300)
+    // const postSearch = _.debounce(() => {this.postsSearch()}, 300);
 
     return (
     <div>
@@ -45,6 +57,8 @@ class App extends Component {
       <VideoList
         onVideoSelect={selectedVideo => this.setState( {selectedVideo} )}
         videos={this.state.videos} />
+        <PostList posts={this.state.posts} />
+      
     </div>
     );
   }
